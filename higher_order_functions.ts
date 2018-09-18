@@ -3,28 +3,42 @@
 * See https://eloquentjavascript.net/05_higher_order.html
 */
 
+/*
+* Example from https://www.sitepoint.com/javascript-decorators-what-they-are/
+* In its simplest form, a decorator is simply a way of wrapping one piece of code with another — 
+* literally “decorating” it. This is a concept you might well have heard of previously as functional composition, or higher-order functions.
+*/
 
-
-//Voorbeeld 1
-function doSomething(name) {
+/*
+* method that add the greeting hello to a name 
+* @in : string
+* @out : string
+*/
+function doSomething(name)  {
   console.log('Hello, ' + name);
+  return 'Hello, ' + name;
 }
 
+/*
+* @in : function
+*/ 
 function loggingDecorator(wrapped) {
-  return function() {
-    console.log('Starting');
-    const result = wrapped.apply(this, arguments);
-    console.log('Finished');
+  return function(name) {
+    //console.log('Starting', a);
+    let result = 'Starting : ';
+    result += wrapped.apply(this, arguments);
+    result += ': Finished';
+    //console.log('Finished');
     return result;
   }
 }
 
 const wrapped = loggingDecorator(doSomething);
 
-doSomething('Graham');
+//doSomething('Graham');
 //Hello, Graham
 
-wrapped('Graham');
+console.log(wrapped('Graham'));
 // Starting
 // Hello, Graham
 // Finished
