@@ -17,10 +17,14 @@ const users = [
     { name: "Jack", age: 18 }, 
     { name: "Milady", age: 22 },
 ]
-// const filter = (cb, arr) => arr.filter(cb);
-// const map = (cb, arr) => arr.map(cb);
+//cb stands for callback
+//const filter = (cb, arr) => arr.filter(cb);
+//const map = (cb, arr) => arr.map(cb);
 
-// console.log(map(u => u.name, filter(u => u.age >= 18, users))); //["Jack", "Milady"]
+//console.log(map(u => u.name, filter(u => u.age >= 18, users))); //["Jack", "Milady"]
+
+//console.log( filter( u => u.age >= 18 , users) );
+//console.log( filter( u => u.name.indexOf('J') , users) );
 
 
 //Automate the function composition
@@ -32,6 +36,7 @@ const users = [
 
 
 //parameters => expression
+//currified the map and filter functions so it is more readable:
 const filter = cb => arr => arr.filter(cb);
 const map = cb => arr => arr.map(cb);
 
@@ -47,6 +52,33 @@ console.log(compose(
   map(u => u.name),
   filter(u => u.age >= 18)
 )(users)); //["Jack", "Milady"]
+
+console.log(compose(
+  filter(u => u.age >= 18)
+)(users)); //["Jack", "Milady"]
+
+
+//create the greet function
+// let sayHello = function(){
+// 	return 'Hello ' ;
+// }
+
+
+
+//console.log( sayHello('Pietje') );
+
+//Now instead of filter let us greet each of the users in the array
+//const greet = cb => arr => arr.sayHello();
+
+
+// console.log('******************');
+// console.log(compose(
+//   map(u => u.name),
+//   greet(u => u.name)
+// )(users)); //["Jack", "Milady"]
+
+
+
 
 
 

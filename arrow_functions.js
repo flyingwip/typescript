@@ -1,3 +1,5 @@
+//https://codeburst.io/javascript-arrow-functions-for-beginners-926947fc0cdc
+
 function funcName(params) {
    return params + 2;
  }
@@ -16,7 +18,7 @@ console.log(funcName(2));
 //parameters => expression
 
 //how does this work?
-//https://codeburst.io/javascript-arrow-functions-for-beginners-926947fc0cdc
+
 const users = [
   { name: "Jeff", age: 14 },
     { name: "Jack", age: 18 }, 
