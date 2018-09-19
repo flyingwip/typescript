@@ -48,34 +48,16 @@ const map = cb => arr => arr.map(cb);
 */
 compose = (...functions) => args => functions.reduceRight((arg, fn) => fn(arg), args);
 
+var sayHello = u => 'Hello ' + u.name;
+
+//now greet everybody that ia older then 18
 console.log(compose(
-  map(u => u.name),
+  map(sayHello),
   filter(u => u.age >= 18)
-)(users)); //["Jack", "Milady"]
+)(users)); //["Hello Jack", "Hello Milady"]
 
-console.log(compose(
-  filter(u => u.age >= 18)
-)(users)); //["Jack", "Milady"]
+//users.map( greet );
 
-
-//create the greet function
-// let sayHello = function(){
-// 	return 'Hello ' ;
-// }
-
-
-
-//console.log( sayHello('Pietje') );
-
-//Now instead of filter let us greet each of the users in the array
-//const greet = cb => arr => arr.sayHello();
-
-
-// console.log('******************');
-// console.log(compose(
-//   map(u => u.name),
-//   greet(u => u.name)
-// )(users)); //["Jack", "Milady"]
 
 
 
