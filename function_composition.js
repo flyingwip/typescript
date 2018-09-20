@@ -5,11 +5,13 @@
 * The result of each function is passed to the next one. 
 */
 
-
+//A very basic example of fuctional compisition
 const add = (a, b) => a + b;
 const mult = (a, b) => a * b;
-console.log(add(2, mult(3, 5)));
 
+console.log('***************************');
+console.log(add(2, mult(3, 5)));
+console.log('***************************');
 //or have a list of users and I need to extract the name of all the adult users. I would personaly write something like:
 
 const users = [
@@ -48,18 +50,30 @@ const map = cb => arr => arr.map(cb);
 */
 compose = (...functions) => args => functions.reduceRight((arg, fn) => fn(arg), args);
 
+
+
 var sayHello = u => 'Hello ' + u.name;
 
 //now greet everybody that ia older then 18
 console.log(compose(
+  //expression as parameter	 
   map(sayHello),
   filter(u => u.age >= 18)
 )(users)); //["Hello Jack", "Hello Milady"]
 
 //users.map( greet );
 
+//MapReduce with function composition
+/*
+The principle of MapReduce is simple. 
+It is just applying a map on a set of data and reduce the result to produce a single result. 
+*/
+const reduce = cb => arr => arr.reduce(cb); //Just currify the reduce function
 
+const mapWords = map(() => 1);
+const reduceWords = reduce((acc, curr) => acc += curr);
 
+console.log(compose(reduceWords, mapWords)(['foo', 'bar', 'baz'])); //3
 
 
 
